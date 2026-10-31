@@ -26,7 +26,7 @@ jobs:
 
       - name: Run Semgrep SAST scan
         run: semgrep scan --config auto --error
-        continue-on-error: true
+        # continue-on-error: true
 
       # 2. SCA (Software Composition Analysis) using pip-audit
       - name: Install dependencies
