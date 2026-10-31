@@ -22,7 +22,7 @@ jobs:
       - name: Run Semgrep SAST
         uses: returntocorp/semgrep-action@v1
         with:
-          config: auto
+          config: p/security-audit
 
       # 2. SCA (Software Composition Analysis) using pip-audit
       - name: Install dependencies
