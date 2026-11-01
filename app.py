@@ -16,12 +16,19 @@ def search():
     cursor = conn.cursor()
     
     # Insecure query construction
-    sql = f"SELECT * FROM users WHERE username LIKE '%{query}%'"
+    ### sql = f"SELECT * FROM users WHERE username LIKE '%{query}%'"
+
+    # SECURITY FIX 1: Parameterized query instead of f-string
+    sql = "SELECT * FROM users WHERE username LIKE ?"
+    cursor.execute(sql, (f'%{query}%',))
+
     cursor.execute(sql)
     results = cursor.fetchall()
     
     return str(results)
 
 if __name__ == '__main__':
-    # SAST Test: Debug mode should never be true in production
-    app.run(debug=True)
+    # SAST Test: Debug = True
+    # Debug mode should never be true in production
+    # Fix, set to false
+    app.run(debug=False)
